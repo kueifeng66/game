@@ -178,10 +178,15 @@ document.addEventListener("mousemove", e => {
 });
 
 document.addEventListener("touchmove", e => {
-  const touch = e.touches[0]
-  playerPaddle.position = (touch.clientY / window.innerHeight) * 100
-});
+  e.preventDefault(); // 🛑 Prevent screen scroll
+  const touch = e.touches[0];
+  playerPaddle.position = (touch.clientY / window.innerHeight) * 100;
+}, { passive: false }); // 👈 Important to allow preventDefault
 
+
+document.addEventListener("touchstart", e => {
+  e.preventDefault();
+}, { passive: false });
 
 
 
