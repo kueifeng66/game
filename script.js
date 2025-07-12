@@ -143,6 +143,10 @@ function update(time) {
     const delta = time - lastTime
     ball.update(delta, [playerPaddle, computerPaddle])
 
+
+    const hue = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--hue"));
+    document.documentElement.style.setProperty("--hue", hue + delta * 0.005);
+
     // 🧠 Only move computer paddle after player hits the ball
     if (ball.lastHitter === "player" || ball.lastHitter === null && ball.direction.x > 0) {
       computerPaddle.update(delta, ball.y)
