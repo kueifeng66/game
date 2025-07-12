@@ -11,6 +11,12 @@ const bgMusic = document.getElementById("bgMusic");
       console.log("Audio play failed:", e);
     });
   }
+  
+   function initMusicOnce() {
+    startMusic();
+    document.removeEventListener("click", initMusicOnce);
+    document.removeEventListener("touchstart", initMusicOnce);
+  }
 
 class Ball {
   constructor(ballElem) {
@@ -193,14 +199,10 @@ window.requestAnimationFrame(update);
 
 
 
-
-
-
  document.addEventListener('DOMContentLoaded', () => {
 	 hideScrollbar();
-    document.addEventListener("click", () => {
-    startMusic();
-  }, { once: true });
+     document.addEventListener("click", initMusicOnce);
+     document.addEventListener("touchstart", initMusicOnce);
   });
 
 
